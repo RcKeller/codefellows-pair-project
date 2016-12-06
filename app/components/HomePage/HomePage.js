@@ -1,9 +1,7 @@
 // jshint ignore: start
 import React from 'react'
 
-//import Bio from '../Bio/Bio'
-//import BooksList from '../BooksList/BooksList'
-//import MessagesList from '../MessagesList/MessagesList'
+import PhotoViewer from '../PhotoViewer/PhotoViewer'
 
 class HomePage extends React.Component {
   render () {
@@ -11,6 +9,7 @@ class HomePage extends React.Component {
       <div>
         <h1>Welcome to Code 501</h1>
         <h2>Building Web Apps with React + Redux</h2>
+        <PhotoViewer />
       </div>
     )
   }
