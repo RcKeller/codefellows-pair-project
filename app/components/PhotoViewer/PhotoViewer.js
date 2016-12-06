@@ -17,7 +17,7 @@ class PhotoViewer extends React.Component {
     this.state = {
       photo: {
         title: 'Title Here',
-        photoURL: placeholder,
+        photoURL: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg',
         date: 'Date'
       }
     }
@@ -31,9 +31,14 @@ class PhotoViewer extends React.Component {
     .then((res) => {
       const data = res.data
       console.log(data)
-      this.setState({
-        photo: data
-      })
+      console.log('state right now', this.state)
+      var temp = this.state.photo
+      console.log(temp)
+      
+      
+//      this.setState({
+//        photo: data
+//      })
 //      let temp = this.state.photo
 //      console.log(temp)
 //      temp.title = data.title
@@ -53,7 +58,7 @@ class PhotoViewer extends React.Component {
     return (
       <div>
         <h1>This is our Photo Viewer</h1>
-        <button onClick={this.getPhoto}>Get some photos!</button>
+        <button onClick={this.getPhoto.bind(this)}>Get some photos!</button>
         <Photo
           title={this.state.photo.title}
           date={this.state.photo.date}
