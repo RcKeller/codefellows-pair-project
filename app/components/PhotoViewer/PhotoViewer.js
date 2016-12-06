@@ -3,12 +3,15 @@ import React from 'react'
 
 import Photo from '../Photo/Photo'
 
+const placeholder = 'https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg'
+
 class PhotoViewer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      image: '',
-      title: ''
+      title: 'Title Here',
+      image: placeholder,
+      date: 'Date'
     }
   }
 
@@ -16,8 +19,10 @@ class PhotoViewer extends React.Component {
     return (
       <div>
         <h1>This is our Photo Viewer</h1>
-        <Photo title={this.state.title}
+        <Photo
+          title={this.state.title}
           image={this.state.image}
+          date={this.state.date}
         />
       </div>
     )
