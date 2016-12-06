@@ -29,16 +29,25 @@ class PhotoViewer extends React.Component {
 
     axios.get(url)
     .then((res) => {
-      let data = res.data
+      const data = res.data
       console.log(data)
-      let temp = this.state.photo
-      temp.title = data.title
-      temp.photoURL = data.url
+      this.setState({
+        photo: data
+      })
+//      let temp = this.state.photo
+//      console.log(temp)
+//      temp.title = data.title
+//      temp.photoURL = data.url
+//      temp.date = data.date
+//      console.log("NEW TEMP", temp)
+      
     })
     .catch((res) => {
       console.error(res)
     })
   }
+  
+  
 
   render () {
     return (
