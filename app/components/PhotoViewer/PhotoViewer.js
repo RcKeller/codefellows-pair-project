@@ -15,44 +15,40 @@ class PhotoViewer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      title: 'Title Here',
-      image: placeholder,
-      date: 'Date'
+      photo: {
+        title: 'Title Here',
+        photoURL: placeholder,
+        date: 'Date'
+      }
     }
   }
 
   getPhoto () {
     let url = endpoint + key
-    console.log(url);
-    
-    
-    
-//    if (this.state.token !== '') {
-//      url += `&pageToken=${this.state.token}`
-//    }
-//    axios.get(url)
-//      .then((res) => {
-//      const oldMessages = this.state.messageList
-//      const newMessages = oldMessages.concat(res.data.messages)
-//      this.setState({
-//        messageList: newMessages,
-//        token: res.data.pageToken
-//      })
-//    })
-//      .catch((res) => {
-//      console.error(res)
-//    })
+    console.log('URL', url)
+
+    axios.get(url)
+    .then((res) => {
+      let data = res.data
+      console.log(data)
+      let temp = this.state.photo
+      temp.title = data.title
+      temp.photoURL = data.url
+    })
+    .catch((res) => {
+      console.error(res)
+    })
   }
-  
+
   render () {
     return (
       <div>
         <h1>This is our Photo Viewer</h1>
         <button onClick={this.getPhoto}>Get some photos!</button>
         <Photo
-          title={this.state.title}
-          image={this.state.image}
-          date={this.state.date}
+          title={this.state.photo.title}
+          date={this.state.photo.date}
+          photoURL={this.state.photo.photoURL}
         />
       </div>
     )
