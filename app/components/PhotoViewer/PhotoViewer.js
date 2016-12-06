@@ -17,8 +17,8 @@ class PhotoViewer extends React.Component {
     this.state = {
       photo: {
         title: 'Title Here',
-        photoURL: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg',
-        date: 'Date'
+        date: 'Date',
+        photoURL: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg'
       }
     }
   }
@@ -30,22 +30,15 @@ class PhotoViewer extends React.Component {
     axios.get(url)
     .then((res) => {
       const data = res.data
-      console.log(data)
       console.log('state right now', this.state)
+      console.log(data)
       var temp = this.state.photo
-      console.log(temp)
-      
-      
-//      this.setState({
-//        photo: data
-//      })
-//      let temp = this.state.photo
-//      console.log(temp)
-//      temp.title = data.title
-//      temp.photoURL = data.url
-//      temp.date = data.date
-//      console.log("NEW TEMP", temp)
-      
+      temp = {
+        title: data.title,
+        date: data.date,
+        photoURL: data.url
+      }
+      this.setState({photo: temp})
     })
     .catch((res) => {
       console.error(res)
