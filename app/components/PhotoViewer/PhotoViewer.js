@@ -17,9 +17,7 @@ class PhotoViewer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      request: {
-        date: '12-07-2016'
-      },
+      requestDate: '',
       photo: {
         title: '',
         date: '',
@@ -31,12 +29,11 @@ class PhotoViewer extends React.Component {
   getPhoto () {
     
     let url = ''
-    if (this.state.photo.date) {
-      url = endpoint + '?api_key=' + key
+    if (this.state.requestDate !== '') {
+      url = endpoint + '?date=' + this.state.requestDate + '&api_key=' + key
+      console.log("REQUEST:", url)
       /*
-      url = endpoint + '?date=' + '&api_key=' + key
-      console.log('URL', url)
-      //https://api.nasa.gov/planetary/apod?date=2016-12-04&api_key=PYWcKr6z1DFCKtPoEtXL8kpK5T2CeLca5z8B7dum
+      // https://api.nasa.gov/planetary/apod?date=2016-12-04&api_key=PYWcKr6z1DFCKtPoEtXL8kpK5T2CeLca5z8B7dum
       */
     } else {
       url = endpoint + '?api_key=' + key
@@ -63,20 +60,18 @@ class PhotoViewer extends React.Component {
   setDate (e) {
     console.log(e)
     this.setState({
-      request: {
-        date: e
-      }
+      requestDate: e
     })
   }
 
   render () {
-    let buttonText = (this.state.photo.date === '' ? "Get today's photo" : "Get yesterday's photo")
+    let buttonText = (this.state.photo.date === '' ? "Get today's photo" : "Get a new photo!")
     return (
       <div>
         <h1>This is our Photo Viewer</h1>
         <button onClick={this.getPhoto.bind(this)}>{buttonText}</button>
         <DateSelector 
-          date={this.state.request.date}
+          date={this.state.requestDate}
           setDate={this.setDate.bind(this)} />
         
         
