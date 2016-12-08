@@ -5,6 +5,8 @@ import axios from 'axios'
 import format from 'date-fns/format'
 
 import Photo from '../Photo/Photo'
+import DateSelector from '../DateSelector/DateSelector'
+
 
 const placeholder = 'https://upload.wikimedia.org/wikipedia/commons/6/62/Starsinthesky.jpg'
 
@@ -15,6 +17,9 @@ class PhotoViewer extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      request: {
+        date: '12-07-2016'
+      },
       photo: {
         title: '',
         date: '',
@@ -55,7 +60,14 @@ class PhotoViewer extends React.Component {
     })
   }
   
-  
+  setDate (e) {
+    console.log(e)
+    this.setState({
+      request: {
+        date: e
+      }
+    })
+  }
 
   render () {
     let buttonText = (this.state.photo.date === '' ? "Get today's photo" : "Get yesterday's photo")
@@ -63,6 +75,11 @@ class PhotoViewer extends React.Component {
       <div>
         <h1>This is our Photo Viewer</h1>
         <button onClick={this.getPhoto.bind(this)}>{buttonText}</button>
+        <DateSelector 
+          date={this.state.request.date}
+          setDate={this.setDate.bind(this)} />
+        
+        
         <Photo
           title={this.state.photo.title}
           date={this.state.photo.date}
