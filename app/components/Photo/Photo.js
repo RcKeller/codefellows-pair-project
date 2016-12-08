@@ -7,6 +7,7 @@ const Photo = ({ title, date, photoURL }) =>
     <hl />
     <h1>{title}</h1>
     <img src={photoURL} />
+    <br></br>
     <em>Date taken: {date}</em>
   </div>
 
